@@ -52,20 +52,16 @@ instance = NewClass()
 print(instance.attr)  # "val"
 ```
 
-But when the value of the property is changed from an instance object, only the instance has this value:
+When the value of the property is changed from an instance object, the class property will be changed. All other instances will have this new value:
 ```python
-instance = NewClass()
-instance.attr = "new"
-print(instance.attr)  # "new"
-print(NewClass.attr)  # "val"
+instance1 = NewClass()
+instance2 = NewClass()
+
+instance1.attr = "new"
+
+print(instance1.attr)  # "new"
+print(instance1.attr)  # "new"
+print(NewClass.attr)   # "new"
 ```
 
-When deleting the property from the instance, the class value is used again:
- ```python
-instance = NewClass()
-instance.attr = "new"
-print(instance.attr)  # "new"
-
-del instance.attr
-print(instance.attr)  # "val"
-```
+This behavior is the same when a property gets deleted from an instance.
