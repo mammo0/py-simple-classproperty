@@ -1,6 +1,7 @@
 # Simple Python `classproperty` decorator
 
 ![PyPI package](https://github.com/mammo0/py-simple-classproperty/workflows/PyPI%20package/badge.svg)
+[![PyPI version](https://badge.fury.io/py/simple-classproperty.svg)](https://badge.fury.io/py/simple-classproperty)
 
 This module provides a simple way for defining class properties.
 
@@ -12,7 +13,7 @@ You can install this Python module via **pip**:
 pip install simple-classproperty
 ```
 
-Otherwise the module can be downloaded from PyPI: *TODO*
+Otherwise the module can be downloaded from PyPI: https://pypi.org/project/simple-classproperty/
 
 
 ### Usage
