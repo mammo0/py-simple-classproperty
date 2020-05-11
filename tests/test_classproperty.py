@@ -26,7 +26,7 @@ class Test(unittest.TestCase):
         with self.assertRaises(AttributeError):
             t.rw_attr
 
-    def test_instance_gt_class(self):
+    def test_class_gt_instance(self):
         t1 = test_classes.TestClass()
         t2 = test_classes.TestClass()
 
@@ -34,26 +34,26 @@ class Test(unittest.TestCase):
         self.assertEqual(t1.rw_attr, "change_me")
         self.assertEqual(t2.rw_attr, "change_me")
 
-        # chenge the instance value
+        # change the instance value
         t1.rw_attr = "new"
-        self.assertEqual(test_classes.TestClass.rw_attr, "change_me")
-        # only the instance value should change here
+        self.assertEqual(test_classes.TestClass.rw_attr, "new")
         self.assertEqual(t1.rw_attr, "new")
-        self.assertEqual(t2.rw_attr, "change_me")
+        self.assertEqual(t2.rw_attr, "new")
 
         # change the class value
         test_classes.TestClass.rw_attr = "another_one"
         self.assertEqual(test_classes.TestClass.rw_attr, "another_one")
-        # the value from the above instance should not change here
-        self.assertEqual(t1.rw_attr, "new")
+        self.assertEqual(t1.rw_attr, "another_one")
         self.assertEqual(t2.rw_attr, "another_one")
 
         # delete the instance value
         del t1.rw_attr
-        # now the value of the class should be returned again
-        self.assertEqual(test_classes.TestClass.rw_attr, "another_one")
-        self.assertEqual(t1.rw_attr, "another_one")
-        self.assertEqual(t2.rw_attr, "another_one")
+        with self.assertRaises(AttributeError):
+            test_classes.TestClass.rw_attr
+        with self.assertRaises(AttributeError):
+            t1.rw_attr
+        with self.assertRaises(AttributeError):
+            t2.rw_attr
 
     def test_read_only_property(self):
         # basic test
