@@ -1,3 +1,4 @@
+from setuptools import setup
 import setuptools
 
 # gitpython is needed for version tagging
@@ -34,7 +35,7 @@ def get_version():
 
 
 # the actual setup
-setuptools.setup(
+setup(
     name="simple-classproperty",
     version=get_version(),
     author="Marc Ammon",
