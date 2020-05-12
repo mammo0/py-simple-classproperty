@@ -20,11 +20,11 @@ Otherwise the module can be downloaded from PyPI: https://pypi.org/project/simpl
 
 1. Import the module:
    ```python
-   from simple_classproperty import ClassPropertyMeta, classproperty
+   from simple_classproperty import ClasspropertyMeta, classproperty
    ```
 2. Create a class with a class property:
    ```python
-   class NewClass(metaclass=ClassPropertyMeta):
+   class NewClass(metaclass=ClasspropertyMeta):
        _attr = "val"
 
        @classproperty
