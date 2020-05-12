@@ -1,7 +1,7 @@
-from simple_classproperty import ClassPropertyMeta, classproperty
+from simple_classproperty import ClasspropertyMeta, classproperty
 
 
-class TestClass(metaclass=ClassPropertyMeta):
+class TestClass(metaclass=ClasspropertyMeta):
     _ro_attr = "read-only"
     _rw_attr = "change_me"
 
