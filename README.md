@@ -60,7 +60,7 @@ instance2 = NewClass()
 instance1.attr = "new"
 
 print(instance1.attr)  # "new"
-print(instance1.attr)  # "new"
+print(instance2.attr)  # "new"
 print(NewClass.attr)   # "new"
 ```
 
