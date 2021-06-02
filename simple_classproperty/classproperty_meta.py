@@ -1,4 +1,4 @@
-from simple_classproperty.classproperty_decorator import _classproperty as classproperty
+from .classproperty_decorator import _classproperty as classproperty
 
 
 class _ClasspropertyMeta(type):
