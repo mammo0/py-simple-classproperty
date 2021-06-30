@@ -1,3 +1,11 @@
+def docum(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        return classproperty(classmethod(f(*args, **kwargs)))
+    return wrapper
+
+
+
 class _classproperty(property):
     """
     The use this class as a decorator for your class property.
