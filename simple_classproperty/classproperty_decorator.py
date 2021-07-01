@@ -1,3 +1,6 @@
+from functools import WRAPPER_ASSIGNMENTS
+
+
 class _classproperty(property):
     """
     The use this class as a decorator for your class property.
@@ -7,6 +10,24 @@ class _classproperty(property):
         def prop(cls):
             return "value"
     """
+    def __init__(self, *functions) -> None:
+        """
+        Preserve the original attributes of the decorated function.
+
+        Avoids this issue: https://stackoverflow.com/questions/43544954/
+                           why-does-sphinx-autodoc-output-a-decorators-docstring-when-there-are-two-decora
+        """
+        # the property __init__ method gets up to 4 functions as arguments
+        # this is because of the special 'setter' and 'deleter' decorators
+        for f in functions:
+            if f:
+                # use the functools for the arguments to perserve
+                for attr in WRAPPER_ASSIGNMENTS:
+                    if hasattr(f, attr):
+                        setattr(self, attr, getattr(f, attr))
+
+        super(_classproperty, self).__init__(*functions)
+
     def __get__(self, _, cls) -> object:
         """
         This method gets called when a property value is requested.
