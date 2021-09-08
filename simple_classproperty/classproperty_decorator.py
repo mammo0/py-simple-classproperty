@@ -7,14 +7,13 @@ class _classproperty(property):
         def prop(cls):
             return "value"
     """
-    def __get__(self, _, cls) -> object:
+    def __get__(self, *args, **_) -> object:
         """
         This method gets called when a property value is requested.
-        @param cls: The class type of the above instance.
         @return: The value of the property.
         """
-        # apply the __get__ on the class
-        return super(_classproperty, self).__get__(cls)
+        # apply the __get__ on the class, which is the second argument
+        return super(_classproperty, self).__get__(args[1])
 
     def __set__(self, cls_or_instance, value: object) -> None:
         """

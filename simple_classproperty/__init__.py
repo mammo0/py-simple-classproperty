@@ -8,5 +8,9 @@ from .classproperty_meta import _ClasspropertyMeta
 __all__ = ["classproperty", "ClasspropertyMeta"]
 
 
-classproperty = _classproperty
-ClasspropertyMeta = _ClasspropertyMeta
+class classproperty(_classproperty):
+    pass
+
+
+class ClasspropertyMeta(_ClasspropertyMeta):
+    pass

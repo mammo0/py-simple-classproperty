@@ -1,3 +1,5 @@
+from typing import Optional
+
 from .classproperty_decorator import _classproperty as classproperty
 
 
@@ -12,7 +14,7 @@ class _ClasspropertyMeta(type):
         @param name: The name of the attribute that should get a new value.
         @param value: The new value of the attribute.
         """
-        cp_obj = self.__get_classproperty_attr(name)
+        cp_obj: Optional[classproperty] = self.__get_classproperty_attr(name)
         if cp_obj:
             cp_obj.__set__(self, value)
         else:
@@ -23,13 +25,13 @@ class _ClasspropertyMeta(type):
         Override of __delattr__ method to allow a classproperty.deleter.
         @param str: The name of the attribute to delete.
         """
-        cp_obj = self.__get_classproperty_attr(name)
+        cp_obj: Optional[classproperty] = self.__get_classproperty_attr(name)
         if cp_obj:
             cp_obj.__delete__(self)
         else:
             super(_ClasspropertyMeta, self).__delattr__(name)
 
-    def __get_classproperty_attr(self, name: str) -> classproperty:
+    def __get_classproperty_attr(self, name: str) -> Optional[classproperty]:
         """
         Get a classproperty attribute from this class with the given name.
         @param name: The name of the attribute.
