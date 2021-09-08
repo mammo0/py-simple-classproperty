@@ -5,11 +5,11 @@ from tests.res import test_classes
 
 
 class Test(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         reload(test_classes)
 
-    def test_property_is_bound_to_class(self):
-        t = test_classes.TestClass()
+    def test_property_is_bound_to_class(self) -> None:
+        t: test_classes.TestClass = test_classes.TestClass()
 
         self.assertEqual(test_classes.TestClass.rw_attr, "change_me")
         self.assertEqual(t.rw_attr, "change_me")
@@ -26,9 +26,9 @@ class Test(unittest.TestCase):
         with self.assertRaises(AttributeError):
             t.rw_attr
 
-    def test_class_gt_instance(self):
-        t1 = test_classes.TestClass()
-        t2 = test_classes.TestClass()
+    def test_class_gt_instance(self) -> None:
+        t1: test_classes.TestClass = test_classes.TestClass()
+        t2: test_classes.TestClass = test_classes.TestClass()
 
         self.assertEqual(test_classes.TestClass.rw_attr, "change_me")
         self.assertEqual(t1.rw_attr, "change_me")
@@ -55,7 +55,7 @@ class Test(unittest.TestCase):
         with self.assertRaises(AttributeError):
             t2.rw_attr
 
-    def test_read_only_property(self):
+    def test_read_only_property(self) -> None:
         # basic test
         self.assertEqual(test_classes.TestClass.ro_attr, "read-only")
 
@@ -66,7 +66,7 @@ class Test(unittest.TestCase):
             del test_classes.TestClass.ro_attr
 
         # do the same with an instance
-        t = test_classes.TestClass()
+        t: test_classes.TestClass = test_classes.TestClass()
         with self.assertRaises(AttributeError):
             t.ro_attr = "changed"
         with self.assertRaises(AttributeError):
