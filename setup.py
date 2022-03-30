@@ -45,6 +45,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/mammo0/py-simple-classproperty",
     packages=["simple_classproperty"],
+    package_data={
+        'simple_classproperty': ['py.typed'],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
