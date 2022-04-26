@@ -6,6 +6,27 @@
 This module provides a simple way for defining class properties.
 
 
+----
+
+**Deprecation notice:** Starting with Python 3.9 the `@classmethod` descriptor can now wrap other descriptors like `@property`. See the official documentation for the announcement: https://docs.python.org/3.9/library/functions.html#classmethod
+
+This means if you are using Python >= 3.9 you can simply realize a classproperty with:
+
+```python
+class NewClass():
+    _atr = "val"
+
+    @classmethod
+    @property
+    def attr(cls):
+        return cls._atr
+```
+
+So in this case this package is not needed anymore. I will still try to maintain this package until Python 3.8 reaches EOL which will be in October 2024.
+
+----
+
+
 ### Install
 
 You can install this Python module via **pip**:
