@@ -44,10 +44,8 @@ jobs:
         # checkout the repo
         - uses: actions/checkout@v3
           with:
-            # fetch complete history because it's needed in setup.py
+            # fetch complete history because it's needed by Poetry
             fetch-depth: 0
-        # also fetch all tags
-        - run: git fetch origin +refs/tags/*:refs/tags/*
         # setup python environment
         - name: Set up Python 3.7
           uses: actions/setup-python@v4
