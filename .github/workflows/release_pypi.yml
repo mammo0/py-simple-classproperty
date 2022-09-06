@@ -57,6 +57,9 @@ jobs:
           uses: abatilo/actions-poetry@v2
           with:
             poetry-version: "1.2"
+        - name: Add dynamic versioning plugin
+          run: |
+            poetry self add "poetry-dynamic-versioning[plugin]"
         # build the package
         - name: Build package
           run: |
