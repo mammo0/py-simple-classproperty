@@ -3,15 +3,13 @@ name = "simple-classproperty"
 version = "0.0.0"
 description = "Provides a 'classproperty' decorator."
 readme = "README.md"
+license = "GPL-3.0-only"
 authors = ["Marc Ammon <marc.ammon@hotmail.de>"]
+homepage = "https://github.com/mammo0/py-simple-classproperty"
 classifiers = [
-	"Programming Language :: Python :: 3",
-	"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent"
 ]
-
-[tool.poetry.urls]
-homepage = "https://github.com/mammo0/py-simple-classproperty"
 
 [tool.poetry.dependencies]
 python = ">=3.7"
