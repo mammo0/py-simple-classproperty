@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Optional
 
 from .classproperty_decorator import _classproperty as classproperty
 
@@ -8,7 +8,7 @@ class _ClasspropertyMeta(type):
     The class that uses the classproperty decorator must use this meta class if the setting and deleting of a class
     property should be supported.
     """
-    def __setattr__(cls, name: str, value: object) -> None:
+    def __setattr__(cls, name: str, value: Any) -> None:
         """
         Override of __setattr__ method to allow a classproperty.setter.
         @param name: The name of the attribute that should get a new value.
@@ -18,7 +18,7 @@ class _ClasspropertyMeta(type):
         if cp_obj:
             cp_obj.__set__(cls, value)
         else:
-            super(_ClasspropertyMeta, cls).__setattr__(name, value)
+            super().__setattr__(name, value)
 
     def __delattr__(cls, name: str):
         """
@@ -29,7 +29,7 @@ class _ClasspropertyMeta(type):
         if cp_obj:
             cp_obj.__delete__(cls)
         else:
-            super(_ClasspropertyMeta, cls).__delattr__(name)
+            super().__delattr__(name)
 
     def __get_classproperty_attr(cls, name: str) -> Optional[classproperty]:
         """
