@@ -1,3 +1,6 @@
+from typing import Any, Optional, Union
+
+
 class _classproperty(property):
     """
     The use this class as a decorator for your class property.
@@ -7,32 +10,35 @@ class _classproperty(property):
         def prop(cls):
             return "value"
     """
-    def __get__(self, *args, **_) -> object:
+    # def __get__(self, *args, **_) -> Any:
+    def __get__(self, instance: Any, owner: Optional[type]=None) -> Any:
         """
         This method gets called when a property value is requested.
         @return: The value of the property.
         """
-        # apply the __get__ on the class, which is the second argument
-        return super().__get__(args[1])
+        if instance is not None:
+            return super().__get__(self.__get_class(instance), owner)
 
-    def __set__(self, cls_or_instance, value: object) -> None:
+        return super().__get__(owner)
+
+    def __set__(self, instance: Any, value: Any) -> None:
         """
         This method gets called when a property value should be set.
         @param cls_or_instance: The class or instance of which the property should be changed.
         @param value: The new value.
         """
         # call this method only on the class, not the instance
-        super().__set__(self.__get_class(cls_or_instance), value)
+        super().__set__(self.__get_class(instance), value)
 
-    def __delete__(self, cls_or_instance) -> None:
+    def __delete__(self, instance: Any) -> None:
         """
         This method gets called when a property should be deleted.
         @param cls_or_instance: The class or instance of which the property should be deleted.
         """
         # call this method only on the class, not the instance
-        super().__delete__(self.__get_class(cls_or_instance))
+        super().__delete__(self.__get_class(instance))
 
-    def __get_class(self, cls_or_instance) -> type:
+    def __get_class(self, cls_or_instance: Union[type, object]) -> type:
         """
         Get the class of an object if one is provided.
         @param cls_or_instance: Either an object or a class.
