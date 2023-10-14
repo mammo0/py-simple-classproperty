@@ -13,7 +13,7 @@ class _classproperty(property):
         @return: The value of the property.
         """
         # apply the __get__ on the class, which is the second argument
-        return super(_classproperty, self).__get__(args[1])
+        return super().__get__(args[1])
 
     def __set__(self, cls_or_instance, value: object) -> None:
         """
@@ -22,7 +22,7 @@ class _classproperty(property):
         @param value: The new value.
         """
         # call this method only on the class, not the instance
-        super(_classproperty, self).__set__(self.__get_class(cls_or_instance), value)
+        super().__set__(self.__get_class(cls_or_instance), value)
 
     def __delete__(self, cls_or_instance) -> None:
         """
@@ -30,7 +30,7 @@ class _classproperty(property):
         @param cls_or_instance: The class or instance of which the property should be deleted.
         """
         # call this method only on the class, not the instance
-        super(_classproperty, self).__delete__(self.__get_class(cls_or_instance))
+        super().__delete__(self.__get_class(cls_or_instance))
 
     def __get_class(self, cls_or_instance) -> type:
         """
@@ -40,5 +40,5 @@ class _classproperty(property):
         """
         if isinstance(cls_or_instance, type):
             return cls_or_instance
-        else:
-            return type(cls_or_instance)
+
+        return type(cls_or_instance)
