@@ -4,6 +4,7 @@ import unittest
 from tests.res import test_classes
 
 
+# pylint: disable=W0104
 class Test(unittest.TestCase):
     def setUp(self) -> None:
         reload(test_classes)
@@ -57,6 +58,8 @@ class Test(unittest.TestCase):
 
     def test_read_only_property(self) -> None:
         # basic test
+        test_classes.TestClass.rw_attr.strip()
+        test_classes.TestClass.rw_attr = "adsf"
         self.assertEqual(test_classes.TestClass.ro_attr, "read-only")
 
         # try changing or deleting
@@ -68,9 +71,9 @@ class Test(unittest.TestCase):
         # do the same with an instance
         t: test_classes.TestClass = test_classes.TestClass()
         with self.assertRaises(AttributeError):
-            t.ro_attr = "changed"
+            t.ro_attr = "changed"  # type: ignore
         with self.assertRaises(AttributeError):
-            del t.ro_attr
+            del t.ro_attr  # type: ignore
 
 
 if __name__ == "__main__":

@@ -14,7 +14,7 @@ class _ClasspropertyMeta(type):
         @param name: The name of the attribute that should get a new value.
         @param value: The new value of the attribute.
         """
-        cp_obj: Optional[classproperty] = cls.__get_classproperty_attr(name)
+        cp_obj: Optional[classproperty] = cls.__get_classproperty_attr(name)  # pylint: disable=E1120
         if cp_obj:
             cp_obj.__set__(cls, value)
         else:
@@ -25,7 +25,7 @@ class _ClasspropertyMeta(type):
         Override of __delattr__ method to allow a classproperty.deleter.
         @param str: The name of the attribute to delete.
         """
-        cp_obj: Optional[classproperty] = cls.__get_classproperty_attr(name)
+        cp_obj: Optional[classproperty] = cls.__get_classproperty_attr(name)  # pylint: disable=E1120
         if cp_obj:
             cp_obj.__delete__(cls)
         else:

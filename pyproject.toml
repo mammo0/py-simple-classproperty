@@ -23,6 +23,11 @@ vcs = "git"
 style = "semver"
 metadata = false
 
+
+[tool.pylint.MASTER]
+init-hook="import astroid.bases; astroid.bases.POSSIBLE_PROPERTIES.add('classproperty')"
+
+
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
 build-backend = "poetry_dynamic_versioning.backend"
