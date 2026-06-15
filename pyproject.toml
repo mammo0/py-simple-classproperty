@@ -25,7 +25,7 @@ init-hook="import astroid.bases; astroid.bases.POSSIBLE_PROPERTIES.add('classpro
 version = "0.0.0"
 
 [tool.poetry.group.dev.dependencies]
-pytest = ">=9.0.0"
+pytest = ">=9.1.0"
 
 [tool.poetry.requires-plugins]
 poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
